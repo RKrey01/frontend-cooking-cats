@@ -1,0 +1,50 @@
+.personalized {
+    min-height: 100vh;
+    background-color: #F1DEDE;
+}
+
+#personalized-h1 {
+    color: #2a2828;
+    padding: 1rem;
+}
+
+.personalized-form {
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personalized-label {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 1em;
+}
+
+.personalized-bar {
+    width: 100%;
+    /*border: 1px solid #2a2828;*/
+    padding: 8px;
+}
+
+.personalized-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    transition: all 0.3s ease-out;
+}
+
+.personalized-button:hover {
+    background-color: #ffffff;
+    color: #242424;
+    transition: all 0.3s ease-out;
+}
+
+.personalized-message {
+    text-align: center;
+    padding: 1em;
+
+}

@@ -1,0 +1,14 @@
+.favorite-container {
+    background-color: #F1DEDE;
+    min-height: 100vh;
+}
+
+#favorite-h1 {
+    color: #2a2828;
+    padding: 1rem;
+}
+
+.favorite-message {
+    text-align: center;
+    padding: 1em;
+}
