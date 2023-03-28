@@ -1,13 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import './PopularRecipes.css';
 import {saveToFavorites} from "./LocalStorage";
 
 function RecipeItem(props) {
-    
-    // This will handle the click and add the recipe to a favorites list based on the URI of the recipe
+    // set default value of showButton to true
+    const {showButton = true} = props;
+
+    // This will handle the click and add the recipe to a favorites list
     const handleClick = () => {
-        saveToFavorites(props.id);
-        console.log(props.id + "is toegevoegd!")
+        saveToFavorites(props);
+        console.log(props.text + " is toegevoegd aan de lijst!")
     }
 
     return (
@@ -23,11 +26,13 @@ function RecipeItem(props) {
                         <p className="recipes__item__text__time">Bereidingstijd in minuten: {props.totalTime}</p>
                     </div>
                 </Link>
-                <div className="favorite-button">
-                    {/*this button can add the recipe as favorite*/}
-                    <button className="btn btn--medium btn--outline" onClick={handleClick}>Favoriet
-                    </button>
-                </div>
+                {showButton && (
+                    <div className="favorite-button">
+                        {/*this button can add the recipe as favorite*/}
+                        <button className="btn btn--medium btn--outline" onClick={handleClick}>Favoriet
+                        </button>
+                    </div>
+                )}
             </li>
         </>
     )
