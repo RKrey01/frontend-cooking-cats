@@ -2,7 +2,7 @@ import React from "react";
 import "../../App.css";
 import Personalized from "../Personalized";
 
-export default function Favorites() {
+export default function PersonalizedRecipes() {
     return (
         <>
             <Personalized/>
