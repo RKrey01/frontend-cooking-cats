@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button} from "./Button";
 import './Navbar.css';
 import mainLogo from '../assets/kookende_katjes.png';
+import axios from "axios";
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -26,6 +27,12 @@ function Navbar() {
 
     // when the screen resizes the showbutton will work for it
     window.addEventListener('resize', showButton);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        axios.defaults.headers.common["Authorization"] = "";
+        window.location.href = "/";
+    };
 
     return (
         <>
@@ -59,13 +66,31 @@ function Navbar() {
                                 Personaliseer recepten
                             </Link>
                         </li>
-                        <li className='nav-item'>
-                            <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-                                Aanmelden
-                            </Link>
-                        </li>
+                        {localStorage.getItem("token") ? (
+                            <li className="nav-item">
+                                <button className="nav-links-mobile" onClick={handleLogout}>
+                                    Uitloggen
+                                </button>
+                            </li>
+                        ) : (
+                            <li className="nav-item">
+                                <Link
+                                    to="/sign-up"
+                                    className="nav-links-mobile"
+                                    onClick={closeMobileMenu}
+                                >
+                                    Aanmelden
+                                </Link>
+                            </li>
+                        )}
                     </ul>
-                    {button && <Button buttonStyle='btn--outline' linkTo='/sign-up'>AANMELDEN</Button>}
+                    {localStorage.getItem("token") ? (
+                            button && <button className="btn btn--medium btn--outline" onClick={handleLogout}>
+                                Uitloggen
+                            </button>
+                    ) : (
+                    button && <Button buttonStyle='btn--outline' linkTo='/sign-up'>AANMELDEN</Button>
+                        )}
                 </div>
             </nav>
         </>

@@ -27,7 +27,16 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/recipes" element={<AllRecipes/>}/>
-                <Route path="/favorites" element={<Favorites/>}/>
+                <Route
+                    path="/favorites"
+                    element={
+                        isAuthenticated ? (
+                            <Favorites />
+                        ) : (
+                            <Navigate to="/sign-up" />
+                        )
+                    }
+                />
                 <Route
                     path="/personalized"
                     element={

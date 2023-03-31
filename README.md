@@ -12,6 +12,7 @@ De recepten kunnen ook verwijdert worden uit de favorieten.
 
 Natuurlijk kunnen gebruikers zich ook registreren en inloggen in de applicatie. Zodra een gebruiker ingelogd is, kan de gebruiker bij een pagina om gepersonaliseerde recepten te vinden. 
 Hierbij beantwoord de gebruiker drie vragen, waarna er passende recepten worden getoond voor de gebruiker.
+De favorieten pagina die hiervoor is genoemd, is ook alleen te benaderen als je ingelogd bent.
 
 Hieronder volgt een screenshot van de zoekpagina om een beeld te krijgen bij de applicatie.
 

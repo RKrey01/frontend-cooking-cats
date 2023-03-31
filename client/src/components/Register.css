@@ -13,6 +13,14 @@
     flex-direction: column;
 }
 
+.error-message {
+    color: red;
+}
+
+.register-title {
+    margin: 1em;
+}
+
 @media screen and (min-width: 600px) {
     .auth-form-container {
         padding: 5rem;

@@ -27,8 +27,9 @@ export const Login = (props) => {
             console.error(error);
         }
 
-    //    sends the user to the homepage
+        //    sends the user to the homepage
         navigate('/');
+        window.location.reload();
     };
 
     return (
@@ -42,7 +43,7 @@ export const Login = (props) => {
                     <input className="form-input" value={pwd} onChange={(e) => setPwd(e.target.value)} type="password" placeholder="*********" id="password" name="password" />
                     <button className="btn btn--primary btn--medium" type="submit">Log In</button>
                 </form>
-                <button className="btn btn--primary btn--medium link-btn" onClick={() => props.onFormSwitch('register')}>Nog geen account? Registreer hier.</button>
+                <button className="btn btn--primary btn--medium link-btn" onClick={() => props.onFormSwitch('sign-up')}>Nog geen account? Registreer hier.</button>
             </div>
         </div>
     )

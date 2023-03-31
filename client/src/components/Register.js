@@ -8,6 +8,8 @@ export const Register = (props) => {
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
 
+    const [error, setError] = useState('');
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(username);
@@ -24,6 +26,13 @@ export const Register = (props) => {
             console.log(JSON.stringify(response?.data));
         } catch (error) {
             console.error(error.response);
+            if (error.response.data.message) {
+                setError(error.response.data.message);
+            } else {
+                // because the backend lacks error messages, there will be displayed a custom message
+                // so the user knows that they need to try again
+                setError("De registratie voldoet niet aan de eisen, probeer het opnieuw.");
+            }
         }
 
     }
@@ -31,7 +40,8 @@ export const Register = (props) => {
     return (
         <div className="Register">
             <div className="auth-form-container">
-                <h2>Registreer</h2>
+                {error && <div className="error-message">{error}</div>}
+                <h2 className="register-title">Registreer</h2>
                 <form className="register-form" onSubmit={handleSubmit}>
                     <label className="form-label" htmlFor="username">gebruikersnaam</label>
                     <input className="form-input" value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username" id="username" name="username" />
