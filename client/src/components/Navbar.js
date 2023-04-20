@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Button} from "./Button";
 import './Navbar.css';
 import mainLogo from '../assets/kookende_katjes.png';
 import axios from "axios";
+import UserContext from "../UserContext";
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+
+    const {user, setUser} = useContext(UserContext);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -29,7 +32,7 @@ function Navbar() {
     window.addEventListener('resize', showButton);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        setUser(null);
         axios.defaults.headers.common["Authorization"] = "";
         window.location.href = "/";
     };
@@ -66,7 +69,7 @@ function Navbar() {
                                 Personaliseer recepten
                             </Link>
                         </li>
-                        {localStorage.getItem("token") ? (
+                        {user ? (
                             <li className="nav-item">
                                 <button className="nav-links-mobile" onClick={handleLogout}>
                                     Uitloggen
@@ -84,13 +87,13 @@ function Navbar() {
                             </li>
                         )}
                     </ul>
-                    {localStorage.getItem("token") ? (
-                            button && <button className="btn btn--medium btn--outline" onClick={handleLogout}>
-                                Uitloggen
-                            </button>
+                    {user ? (
+                        button && <button className="btn btn--medium btn--outline" onClick={handleLogout}>
+                            Uitloggen
+                        </button>
                     ) : (
-                    button && <Button buttonStyle='btn--outline' linkTo='/sign-up'>AANMELDEN</Button>
-                        )}
+                        button && <Button buttonStyle='btn--outline' linkTo='/sign-up'>AANMELDEN</Button>
+                    )}
                 </div>
             </nav>
         </>
