@@ -1,17 +1,29 @@
-import React, {useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./Register.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import UserContext from "../UserContext";
 
 export const Login = (props) => {
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
+    const { user, setUser } = useContext(UserContext);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        //check if user is logged in or not
+        if (user !== null) {
+            //sends user to the homepage
+            navigate('/');
+        }
+    }, [navigate, user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(username);
+
+        //login user
         try {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
                 "username": username,
@@ -19,17 +31,12 @@ export const Login = (props) => {
             }, {
                 headers: { 'Content-Type': 'application/json',
                     'Authorization': 'Bearer xxx.xxx.xxx', }
-                // withCredentials: true
             });
             console.log(JSON.stringify(response?.data));
-            localStorage.setItem('token', response.data.token);
+            setUser(response?.data)
         } catch (error) {
             console.error(error);
         }
-
-        //    sends the user to the homepage
-        navigate('/');
-        window.location.reload();
     };
 
     return (

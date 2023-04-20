@@ -4,15 +4,18 @@ import "./RecipeStyles.css";
 import RecipeItem from "./RecipeItem";
 import "./PopularRecipes.css";
 import {getFavorites, removeFromFavorites} from "./LocalStorage";
+import {useNavigate} from "react-router-dom";
 
 function Favorite() {
     const favorites = getFavorites();
     console.log(favorites)
 
+    const navigate = useNavigate();
+
     const handleClick = (recipe) => {
         removeFromFavorites(recipe);
         console.log(recipe + " is verwijdert uit de lijst!")
-        window.location.reload();
+        navigate('/favorites');
     }
 
     return (
